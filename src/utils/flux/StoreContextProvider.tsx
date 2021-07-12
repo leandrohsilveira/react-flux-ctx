@@ -6,7 +6,7 @@ import {
   useReducer,
   useState,
 } from 'react'
-import { EffectReducer, StoreContext, StoreMap } from './core'
+import { StoreContext, EffectReducer, StoreMap } from './core'
 
 const SET_INITIAL_STATE_TYPE = '@flux_setInitialState'
 
