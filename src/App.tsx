@@ -1,5 +1,5 @@
 import './App.css';
-import { Auth, AuthContextProvider } from './user';
+import { Topbar, AuthContextProvider } from './user';
 import { StoreContextProvider } from './utils';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div className='App'>
       <StoreContextProvider>
         <AuthContextProvider>
-          <Auth />
+          <Topbar />
         </AuthContextProvider>
       </StoreContextProvider>
     </div>

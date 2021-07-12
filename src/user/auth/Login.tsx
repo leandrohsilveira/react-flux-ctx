@@ -1,5 +1,7 @@
 import { FormEvent, useCallback } from 'react'
 
+import './Login.css'
+
 interface LoginProps {
   isAuthenticated: boolean
   onLogin(username: string, password: string): void
@@ -17,13 +19,14 @@ export function Login({ isAuthenticated, onLogin }: LoginProps) {
 
   if (!isAuthenticated) {
     return (
-      <form onSubmit={handleSubmit}>
+      <form className='login-form' onSubmit={handleSubmit}>
         <input
           id='username'
           type='text'
           name='username'
           placeholder='Username'
           autoComplete='username'
+          required
         />
         <input
           id='passowrd'
@@ -31,6 +34,7 @@ export function Login({ isAuthenticated, onLogin }: LoginProps) {
           name='password'
           placeholder='Password'
           autoComplete='current-password'
+          required
         />
         <button type='submit'>Login</button>
       </form>

@@ -5,17 +5,22 @@ import { CurrentUser } from './CurrentUser'
 import { Login } from './Login'
 import { Logout } from './Logout'
 
-export function Auth() {
+import './Topbar.css'
+
+export function Topbar() {
   const isAuthenticated = useStoreSelector(isAuthenticatedSelector)
   const name = useStoreSelector(getNameSelector)
   const handleLogin = useActionCreator(AuthActionCreators.login)
   const handleLogout = useActionCreator(AuthActionCreators.logout)
 
   return (
-    <>
-      <Login isAuthenticated={isAuthenticated} onLogin={handleLogin} />
-      <CurrentUser isAuthenticated={isAuthenticated} name={name} />
-      <Logout isAuthenticated={isAuthenticated} onLogout={handleLogout} />
-    </>
+    <div className="topbar">
+      <h1>App</h1>
+      <div className="auth">
+        <Login isAuthenticated={isAuthenticated} onLogin={handleLogin} />
+        <CurrentUser isAuthenticated={isAuthenticated} name={name} />
+        <Logout isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+      </div>
+    </div>
   )
 }
