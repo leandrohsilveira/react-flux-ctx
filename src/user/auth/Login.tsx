@@ -1,14 +1,13 @@
 import { FormEvent, useCallback } from "react"
-import { useActionCreator, useStoreSelector } from "../../utils";
 import { AuthActionCreators } from "./auth.actions";
 import { isAuthenticatedSelector } from "./auth.reducer";
-import { AuthContext } from "./AuthContext";
+import { useActionCreator, useStoreSelector } from "./AuthContext";
 
 export function Login() {
 
-  const isAuthenticated = useStoreSelector(AuthContext, isAuthenticatedSelector)
+  const isAuthenticated = useStoreSelector(isAuthenticatedSelector)
 
-  const login = useActionCreator(AuthContext, AuthActionCreators.login)
+  const login = useActionCreator(AuthActionCreators.login)
 
   const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()

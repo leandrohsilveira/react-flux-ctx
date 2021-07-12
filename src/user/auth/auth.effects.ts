@@ -1,13 +1,8 @@
-import { Effect } from "../../utils";
 import { AuthActionCreators, AuthActions, AuthActionType, LoginAction } from "./auth.actions";
 import { AuthStore } from "./auth.reducer";
 import { AuthService } from "./auth.service";
 
-
-
-
-
-export function authEffects(state: AuthStore, action: AuthActions): Effect<AuthActions> {
+export async function authEffects(state: AuthStore, action: AuthActions) {
   switch(action.type) {
     case AuthActionType.LOGIN:
       return loginEffect(action)
