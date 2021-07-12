@@ -1,4 +1,4 @@
-import { FormEvent, useCallback } from "react"
+import { FormEvent, useCallback } from 'react'
 
 interface LoginProps {
   isAuthenticated: boolean
@@ -6,7 +6,6 @@ interface LoginProps {
 }
 
 export function Login({ isAuthenticated, onLogin }: LoginProps) {
-
   const handleSubmit = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
@@ -19,21 +18,21 @@ export function Login({ isAuthenticated, onLogin }: LoginProps) {
   if (!isAuthenticated) {
     return (
       <form onSubmit={handleSubmit}>
-        <input 
-          id="username"
-          type="text"
-          name="username"
-          placeholder="Username"
-          autoComplete="username" 
+        <input
+          id='username'
+          type='text'
+          name='username'
+          placeholder='Username'
+          autoComplete='username'
         />
-        <input 
-          id="passowrd"
-          type="password"
-          name="password"
-          placeholder="Password"
-          autoComplete="current-password"
+        <input
+          id='passowrd'
+          type='password'
+          name='password'
+          placeholder='Password'
+          autoComplete='current-password'
         />
-        <button type="submit">Login</button>
+        <button type='submit'>Login</button>
       </form>
     )
   }

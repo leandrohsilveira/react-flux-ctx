@@ -4,7 +4,7 @@ import { StoreContextProvider } from './utils';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <StoreContextProvider>
         <AuthContextProvider>
           <Auth />

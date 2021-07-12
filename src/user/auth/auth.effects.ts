@@ -1,9 +1,9 @@
-import { AuthActionCreators, AuthAction, AuthActionType } from "./auth.actions";
-import { AuthStore } from "./auth.reducer";
-import { AuthService } from "./auth.service";
+import { AuthActionCreators, AuthAction, AuthActionType } from './auth.actions'
+import { AuthStore } from './auth.reducer'
+import { AuthService } from './auth.service'
 
 export async function authEffects(state: AuthStore, action: AuthAction) {
-  switch(action.type) {
+  switch (action.type) {
     case AuthActionType.LOGIN:
       return loginEffect(action.username, action.password)
     default:

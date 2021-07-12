@@ -1,4 +1,4 @@
-import { AuthAction, AuthActionType } from "./auth.actions";
+import { AuthAction, AuthActionType } from './auth.actions'
 
 export interface AuthStore {
   authenticated: boolean
@@ -19,12 +19,15 @@ export function isAuthenticatedSelector(state: AuthStore = initialState) {
   return state.authenticated
 }
 
-export function getUsernameSelector(state: AuthStore = initialState) {
-  return state.username
+export function getNameSelector(state: AuthStore = initialState) {
+  return state.name
 }
 
-export function authReducer(state: AuthStore = initialState, action: AuthAction): AuthStore {
-  switch(action.type) {
+export function authReducer(
+  state: AuthStore = initialState,
+  action: AuthAction
+): AuthStore {
+  switch (action.type) {
     case AuthActionType.LOGIN:
       return { ...state, authenticating: true }
     case AuthActionType.LOGIN_SUCCESSFUL:
