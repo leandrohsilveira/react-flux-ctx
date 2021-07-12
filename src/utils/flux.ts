@@ -62,8 +62,7 @@ export function useStoreSelector<Store, R, Action>(context: Context<FluxContext<
   return useMemo(() => selector(store), [selector, store]);
 }
 
-export function
- makeStore<Store, Action>(context: Context<FluxContext<Store, Action>>) {
+export function makeStore<Store, Action>(context: Context<FluxContext<Store, Action>>) {
   return {
     useStoreSelector: <R>(selector: (store: Store) => R) => useStoreSelector(context, selector),
     useActionCreator: <Creator extends ActionCreator<Action>>(actionCreator: Creator) => useActionCreator(context, actionCreator),
