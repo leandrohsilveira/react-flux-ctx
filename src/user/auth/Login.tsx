@@ -1,19 +1,20 @@
 import { FormEvent, useCallback } from "react"
-import { AuthActionCreators } from "./auth.actions";
-import { isAuthenticatedSelector } from "./auth.reducer";
-import { useActionCreator, useStoreSelector } from "./AuthContext";
 
-export function Login() {
+interface LoginProps {
+  isAuthenticated: boolean
+  onLogin(username: string, password: string): void
+}
 
-  const isAuthenticated = useStoreSelector(isAuthenticatedSelector)
+export function Login({ isAuthenticated, onLogin }: LoginProps) {
 
-  const login = useActionCreator(AuthActionCreators.login)
-
-  const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const { username, password }: HTMLFormElement = e.currentTarget
-    login(username.value, password.value)
-  }, [login])
+  const handleSubmit = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+      const { username, password }: HTMLFormElement = e.currentTarget
+      onLogin(username.value, password.value)
+    },
+    [onLogin]
+  )
 
   if (!isAuthenticated) {
     return (
@@ -22,13 +23,15 @@ export function Login() {
           id="username"
           type="text"
           name="username"
-          placeholder="Username" 
+          placeholder="Username"
+          autoComplete="username" 
         />
         <input 
           id="passowrd"
           type="password"
           name="password"
-          placeholder="Password" 
+          placeholder="Password"
+          autoComplete="current-password"
         />
         <button type="submit">Login</button>
       </form>

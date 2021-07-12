@@ -15,11 +15,11 @@ export const initialState: AuthStore = {
   authenticating: false,
 }
 
-export function isAuthenticatedSelector(state: AuthStore) {
+export function isAuthenticatedSelector(state: AuthStore = initialState) {
   return state.authenticated
 }
 
-export function getUsernameSelector(state: AuthStore) {
+export function getUsernameSelector(state: AuthStore = initialState) {
   return state.username
 }
 

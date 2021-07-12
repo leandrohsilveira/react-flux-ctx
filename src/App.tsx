@@ -1,13 +1,15 @@
 import './App.css';
-import { AuthContextProvider, Login, Logout } from './user';
+import { Auth, AuthContextProvider } from './user';
+import { StoreContextProvider } from './utils';
 
 function App() {
   return (
     <div className="App">
-      <AuthContextProvider>
-        <Login />
-        <Logout />
-      </AuthContextProvider>
+      <StoreContextProvider>
+        <AuthContextProvider>
+          <Auth />
+        </AuthContextProvider>
+      </StoreContextProvider>
     </div>
   );
 }

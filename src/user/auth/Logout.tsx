@@ -1,12 +1,9 @@
-import { useCallback } from "react";
-import { AuthActionCreators } from "./auth.actions";
-import { isAuthenticatedSelector } from "./auth.reducer";
-import { useActionCreator, useStoreSelector } from "./AuthContext";
+interface LogoutProps {
+  isAuthenticated: boolean
+  onLogout(): void
+}
 
-export function Logout() {
-  const isAuthenticated = useStoreSelector(isAuthenticatedSelector)
-  const logout = useActionCreator(AuthActionCreators.logout)
-  const handleLogoutClick = useCallback(() => logout(), [logout])
-  if (isAuthenticated) return <button type="button" onClick={handleLogoutClick}>Logout</button>
+export function Logout({ isAuthenticated, onLogout }: LogoutProps) {
+  if (isAuthenticated) return <button type="button" onClick={onLogout}>Logout</button>
   return null
 }
