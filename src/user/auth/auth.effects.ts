@@ -2,20 +2,34 @@ import { AuthActionCreators, AuthAction, AuthActionType } from './auth.actions'
 import { AuthStore } from './auth.reducer'
 import { AuthService } from './auth.service'
 
-export async function authEffects(state: AuthStore, action: AuthAction) {
-  switch (action.type) {
-    case AuthActionType.LOGIN:
-      return loginEffect(action.username, action.password)
-    default:
-      break
-  }
+export interface AuthEffects {
+  effects(state: AuthStore, action: AuthAction): Promise<AuthAction | void>
 }
 
-async function loginEffect(username: string, password: string) {
-  try {
-    const result = await AuthService.login(username, password)
-    return AuthActionCreators.loginSuccessful(result)
-  } catch (error) {
-    return AuthActionCreators.loginFailed(error.message)
+export class AuthEffectsImpl implements AuthEffects {
+
+  constructor(private authService: AuthService) {
+    this.effects = this.effects.bind(this)
   }
+
+  async effects(state: AuthStore, action: AuthAction) {
+    switch (action.type) {
+      case AuthActionType.LOGIN:
+        return this.loginEffect(action.username, action.password)
+      default:
+        break
+    }
+  }
+  
+  private async loginEffect(username: string, password: string) {
+    try {
+      const result = await this.authService.login(username, password)
+      return AuthActionCreators.loginSuccessful(result)
+    } catch (error) {
+      return AuthActionCreators.loginFailed(error.message)
+    }
+  }
+
+
 }
+

@@ -13,7 +13,11 @@ const users: AuthMock[] = [
   },
 ]
 
-export const AuthService = {
+export interface AuthService {
+  login(username: string, password: string): Promise<AuthResult>
+}
+
+export class AuthServiceImpl implements AuthService {
   login(username: string, password: string) {
     return new Promise<AuthResult>((resolve, reject) =>
       setTimeout(() => {
@@ -29,5 +33,5 @@ export const AuthService = {
         else reject({ status: 403, message: 'Incorrect username or password' })
       }, 200)
     )
-  },
+  }
 }
